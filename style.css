@@ -1,0 +1,80 @@
+:root{
+  --bg:#060a18;
+  --panel:rgba(14,22,50,.72);
+  --cyan:#00f0ff;
+  --mag:#ff2bd6;
+  --ink:#e8f6ff;
+  --dim:#7f93b8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:env(safe-area-inset-left,0px);
+  padding-right:env(safe-area-inset-right,0px);
+}
+*{box-sizing:border-box}
+html,body{
+  width:100%;height:100%;height:100dvh;
+  margin:0;overflow:hidden;
+  background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+#hud{
+  position:fixed;left:0;right:0;
+  top:calc(env(safe-area-inset-top,0px) + clamp(8px,2vh,18px));
+  display:flex;flex-direction:column;align-items:center;gap:clamp(5px,1vh,9px);
+  pointer-events:none;
+}
+#pill{
+  display:flex;align-items:center;gap:10px;
+  padding:clamp(5px,1vh,8px) clamp(14px,3vw,26px);
+  border-radius:999px;
+  background:var(--panel);
+  border:1px solid rgba(0,240,255,.55);
+  box-shadow:0 0 14px rgba(0,240,255,.35),inset 0 0 12px rgba(0,240,255,.12);
+  font:700 clamp(12px,2.2vmin,17px)/1 ui-monospace,"Cascadia Code",Consolas,monospace;
+  letter-spacing:.22em;color:var(--cyan);
+  text-shadow:0 0 8px rgba(0,240,255,.8);
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mag);box-shadow:0 0 10px var(--mag);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+#prog{width:clamp(130px,34vmin,260px);height:5px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden}
+#progbar{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--mag));box-shadow:0 0 10px var(--cyan);transition:width .25s}
+#hint{font-size:clamp(10px,1.8vmin,13px);color:var(--dim);letter-spacing:.06em;text-align:center;padding:0 16px}
+#bar{
+  position:fixed;left:0;right:0;
+  bottom:calc(env(safe-area-inset-bottom,0px) + clamp(10px,3vh,26px));
+  display:flex;justify-content:center;gap:clamp(8px,2vw,16px);
+}
+button{
+  border:1px solid rgba(0,240,255,.6);
+  border-radius:12px;
+  padding:clamp(9px,1.8vmin,14px) clamp(14px,3.2vmin,26px);
+  font:700 clamp(12px,2.2vmin,16px)/1 ui-monospace,"Cascadia Code",Consolas,monospace;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cyan);background:var(--panel);
+  box-shadow:0 0 12px rgba(0,240,255,.25),inset 0 0 10px rgba(0,240,255,.1);
+  cursor:pointer;
+  transition:transform .1s,box-shadow .15s,background .15s;
+}
+button:hover{background:rgba(0,240,255,.14);box-shadow:0 0 20px rgba(0,240,255,.5)}
+button:active{transform:scale(.95)}
+#win{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+  background:rgba(3,6,16,.72);backdrop-filter:blur(5px);padding:16px;
+}
+#win.on{display:flex}
+.card{
+  text-align:center;padding:clamp(22px,5vmin,40px) clamp(26px,7vmin,56px);
+  border-radius:18px;background:var(--panel);
+  border:1px solid rgba(255,43,214,.7);
+  box-shadow:0 0 30px rgba(255,43,214,.4),inset 0 0 24px rgba(255,43,214,.12);
+  animation:pop .35s ease-out;
+}
+.card small{font:600 clamp(10px,2vmin,12px) ui-monospace,Consolas,monospace;letter-spacing:.3em;color:var(--mag)}
+.card h2{margin:10px 0 20px;font-size:clamp(24px,6vmin,40px);color:#fff;text-shadow:0 0 16px var(--cyan)}
+.card button{border-color:var(--mag);color:#fff;background:rgba(255,43,214,.22);box-shadow:0 0 18px rgba(255,43,214,.5)}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+@media (max-height:460px){#hint{display:none}#prog{height:4px}}

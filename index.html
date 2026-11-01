@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060a18">
+<title>Casa Colorida</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+<header id="hud">
+  <div id="pill"><span class="dot"></span><span id="lvl">NÍVEL 1</span></div>
+  <div id="prog"><i id="progbar"></i></div>
+  <div id="hint">Deslize ou use as setas para mover o pincel</div>
+</header>
+<nav id="bar">
+  <button id="undo">↶ Desfazer</button>
+  <button id="reset">⟳ Reiniciar</button>
+</nav>
+<div id="win">
+  <div class="card">
+    <small>SISTEMA CONCLUÍDO</small>
+    <h2>Casa pintada!</h2>
+    <button id="next">Próximo nível ▶</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
